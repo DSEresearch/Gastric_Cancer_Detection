@@ -54,3 +54,22 @@ python3.8 -c "import pixelengine; print(pixelengine.__file__)"
 python3.8 -m pip install opencv-python-headless
 sudo apt-get install -y libgl1-mesa-glx
 sudo apt --fix-broken install
+ 
+# Execution Steps
+pyton3.8 convert_isyntax_to_zarr.py
+
+pyton3.8 zarr_clean_manifest.py
+
+python3.11 -m torch.distributed.run \
+  --nproc_per_node=8 \
+  --master_addr=127.0.0.1 \
+  --master_port=29500 \
+  dinov2_final.py \
+  --manifest ./clean_manifest.csv \
+  --output-dir ./dinov2_features \
+  --mode extract \
+  --backbone dinov2_vitb14 \
+  --dinov2-repo /home/jovyan/dinov2 \
+  --tile-size 518 \
+  --batch-size 32 \
+  --num-workers 0
