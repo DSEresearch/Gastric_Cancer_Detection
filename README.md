@@ -1,4 +1,4 @@
-#AI-Driven Gastric Cancer Detection from Philips iSyntax Slides with VYLOY-Based Histological Features
+# AI-Driven Gastric Cancer Detection from Philips iSyntax Slides with VYLOY-Based Histological Features
 
 This project focuses on leveraging Philips iSyntax whole-slide imaging data to enable high-resolution analysis of tissue morphology in the context of gastric cancer. Using the Philips Pathology SDK and PixelEngine, the pipeline extracts structured image patches from large-scale iSyntax slides while preserving spatial and contextual information. These patches serve as the foundation for downstream computational analysis, allowing scalable processing of gigapixel pathology data.
 
@@ -13,7 +13,6 @@ sudo apt update
 sudo apt install python3.8 python3.8-venv python3.8-distutils
 sudo apt install libgles2 libegl1
 sudo apt install liblcms2-2
-##sudo apt --fix-broken install
 sudo apt install libtinyxml2.6.2v5 libgles2-mesa libegl1-mesa
 
 sudo dpkg -i --ignore-depends=python3 deb_files/philips-pathologysdk-python3-softwarerendercontext_5.1.0-1_all.deb
