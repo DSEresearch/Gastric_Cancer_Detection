@@ -8,18 +8,21 @@ The extracted data are then utilized in machine learning workflows to distinguis
 
 # Pipeline
 1. convert_isyntax_to_zarr.py
+   
    Input:  ./slides/*.isyntax
    Output: ./zarr/[Slide_ID].zarr
            zarr_conversion_logs.csv
 
-2. zarr_clean_manifest.py
+3. zarr_clean_manifest.py
+   
    Input:  ./zarr/[Slide_ID].zarr
    Output: clean_manifest.csv
            QC images for checking main tissue/noise detection
 
-3. dinov2_level0.py
+5. dinov2_level0.py
+   
    Input:  clean_manifest.csv
-   Output: DINOv2 training/features using only clean 512×512 Level 0 patches
+   Output: DINOv2 training/features using only clean 518×518 Level 0 patches
 
 # System Installation
 sudo sed -i 's|http://ftp.daum.net/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
