@@ -6,18 +6,42 @@ A key component of the study is the integration of VYLOY-stained histopathology 
 
 The extracted data are then utilized in machine learning workflows to distinguish between cancerous and non-cancerous regions, enabling automated or semi-automated diagnostic support. By bridging Philips iSyntax-based data acquisition with advanced analytical techniques, the project contributes toward improving early detection, classification accuracy, and research insights in gastric cancer pathology.
 
+# Pipeline
+1. convert_isyntax_to_zarr.py
+   Input:  ./slides/*.isyntax
+   Output: ./zarr/[Slide_ID].zarr
+           zarr_conversion_logs.csv
+
+2. zarr_clean_manifest.py
+   Input:  ./zarr/[Slide_ID].zarr
+   Output: clean_manifest.csv
+           QC images for checking main tissue/noise detection
+
+3. dinov2_level0.py
+   Input:  clean_manifest.csv
+   Output: DINOv2 training/features using only clean 512×512 Level 0 patches
+
 # System Installation
 sudo sed -i 's|http://ftp.daum.net/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
+
 sudo add-apt-repository ppa:deadsnakes/ppa
+
 sudo apt update
+
 sudo apt install python3.8 python3.8-venv python3.8-distutils
+
 sudo apt install libgles2 libegl1
+
 sudo apt install liblcms2-2
+
 sudo apt install libtinyxml2.6.2v5 libgles2-mesa libegl1-mesa
 
 sudo dpkg -i --ignore-depends=python3 deb_files/philips-pathologysdk-python3-softwarerendercontext_5.1.0-1_all.deb
+
 sudo dpkg -i --ignore-depends=python3 deb_files/philips-pathologysdk-pixelengine_5.1.0-1_amd64.deb 
+
 sudo dpkg -i --ignore-depends=python3 deb_files/philips-pathologysdk-python3-pixelengine_5.1.0-1_all.deb
+
 sudo dpkg -i --ignore-depends=python3 deb_files/philips-pathologysdk-softwarerenderer_5.1.0-1_amd64.deb 
 
 ##PYTHONPATH=$HOME/.local/lib/python3.8/site-packages:/usr/lib/python3/dist-packages
