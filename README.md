@@ -1,3 +1,11 @@
+#AI-Driven Gastric Cancer Detection from Philips iSyntax Slides with VYLOY-Based Histological Features
+
+This project focuses on leveraging Philips iSyntax whole-slide imaging data to enable high-resolution analysis of tissue morphology in the context of gastric cancer. Using the Philips Pathology SDK and PixelEngine, the pipeline extracts structured image patches from large-scale iSyntax slides while preserving spatial and contextual information. These patches serve as the foundation for downstream computational analysis, allowing scalable processing of gigapixel pathology data.
+
+A key component of the study is the integration of VYLOY-stained histopathology slides, which enhance cellular and structural contrast for more precise identification of tissue patterns. By combining VYLOY staining with systematic patch extraction from iSyntax files, the project aims to capture subtle morphological variations associated with gastric cancer progression. This approach supports both qualitative pathology interpretation and quantitative modeling.
+
+The extracted data are then utilized in machine learning workflows to distinguish between cancerous and non-cancerous regions, enabling automated or semi-automated diagnostic support. By bridging Philips iSyntax-based data acquisition with advanced analytical techniques, the project contributes toward improving early detection, classification accuracy, and research insights in gastric cancer pathology.
+
 # System Installation
 sudo sed -i 's|http://ftp.daum.net/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
 sudo add-apt-repository ppa:deadsnakes/ppa
