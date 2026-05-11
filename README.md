@@ -1,10 +1,20 @@
-# AI-Driven Gastric Cancer Detection from Philips iSyntax Slides with VYLOY-Based Histological Features
+# Self-Supervised Feature Representation Learning for CLDN18.2 Detection in Gastric Cancer iSyntax Whole-Slide Images
 
-This project focuses on leveraging Philips iSyntax whole-slide imaging data to enable high-resolution analysis of tissue morphology in the context of gastric cancer. Using the Philips Pathology SDK and PixelEngine, the pipeline extracts structured image patches from large-scale iSyntax slides while preserving spatial and contextual information. These patches serve as the foundation for downstream computational analysis, allowing scalable processing of gigapixel pathology data.
+This project leverages Philips iSyntax whole-slide imaging (WSI) to perform high-resolution morphological analysis of gastric cancer tissue. Utilizing the Philips Pathology SDK and PixelEngine, we have developed a pipeline that extracts structured image patches from large-scale iSyntax slides, ensuring the preservation of critical spatial and contextual information. This framework enables the scalable processing of gigapixel pathology data, transforming massive raw files into a structured foundation for downstream computational analysis.
 
-A key component of the study is the integration of VYLOY-stained histopathology slides, which enhance cellular and structural contrast for more precise identification of tissue patterns. By combining VYLOY staining with systematic patch extraction from iSyntax files, the project aims to capture subtle morphological variations associated with gastric cancer progression. This approach supports both qualitative pathology interpretation and quantitative modeling.
+A distinctive feature of this study is the integration of VYLOY-stained (CLDN18.2) histopathology slides, which provide enhanced molecular and structural contrast for the precise identification of tumor-specific patterns. By synchronizing systematic patch extraction with VYLOY-specific features, the project captures subtle morphological variations indicative of gastric cancer progression that are often elusive in traditional workflows. This dual approach facilitates both high-fidelity qualitative interpretation and robust quantitative modeling.
 
-The extracted data are then utilized in machine learning workflows to distinguish between cancerous and non-cancerous regions, enabling automated or semi-automated diagnostic support. By bridging Philips iSyntax-based data acquisition with advanced analytical techniques, the project contributes toward improving early detection, classification accuracy, and research insights in gastric cancer pathology.
+The resulting dataset powers machine learning workflows designed to discriminate between malignant and benign regions, fostering the development of automated diagnostic support systems. By bridging the gap between proprietary iSyntax data acquisition and advanced vision models, this project advances the standards for classification accuracy, early detection, and deep research insights into the gastric cancer landscape.
+
+# Objectives
+1. Objective Quantification and Reproducibility: 
+The integration of DINOv2 into digital pathology addresses the inherent subjectivity and variability associated with manual visual assessment. While a pathologist may estimate the CLDN18.2 expression percentage, human observation is often prone to inter-observer bias, especially near critical clinical thresholds. By leveraging the high-dimensional feature extraction capabilities of DINOv2, we can implement a standardized computational framework that precisely quantifies staining intensity and spatial distribution at the pixel level. This ensures highly reproducible results that are essential for making consistent clinical decisions regarding VYLOY eligibility.
+
+2. Discovery of Sub-visual Morphological Features: 
+Beyond simple color recognition, DINOv2’s self-supervised learning architecture excels at identifying complex, sub-visual patterns that elude human perception. The model generates rich, dense embeddings that capture intricate morphological nuances, such as subtle alterations in nuclear architecture, cellular orientation, and the microenvironmental relationship between tumor cells and the surrounding stroma. These latent features allow for a deeper characterization of the "Positive" slides, potentially uncovering structural biomarkers that correlate with treatment response, which cannot be identified by traditional staining analysis alone.
+
+3. Enhancing Diagnostic Efficiency and Workflow: 
+Processing high-resolution iSyntax files is computationally and labor-intensively demanding due to the massive scale of Whole Slide Images (WSI). DINOv2 facilitates a significant optimization of the diagnostic workflow by acting as an intelligent triage system. The model can rapidly scan thousands of image patches to pinpoint specific Regions of Interest (ROIs) where CLDN18.2 expression is most prominent or clinically significant. By automating the screening process and filtering out non-informative areas, the system allows pathologists to focus their expertise on the most critical diagnostic regions, thereby drastically reducing turnaround time and increasing overall throughput.
 
 # Pipeline
 1. convert_isyntax_to_zarr.py
@@ -26,7 +36,7 @@ The extracted data are then utilized in machine learning workflows to distinguis
 
 # Installation on Ubuntu
 * Ubuntu 20 on Kakao Cloud with 8 B200 GPUs.
-* 200 iSyntax files with VYLOY-Based Histological Features
+* 200 iSyntax files with VYLOY-Based Features
 
 * sudo sed -i 's|http://ftp.daum.net/ubuntu|http://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list
 * sudo add-apt-repository ppa:deadsnakes/ppa
@@ -66,3 +76,6 @@ The extracted data are then utilized in machine learning workflows to distinguis
   --tile-size 518 \
   --batch-size 32 \
   --num-workers 0
+
+
+*Sponsored by GensionBio*
